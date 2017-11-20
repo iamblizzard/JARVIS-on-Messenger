@@ -1,0 +1,20 @@
+{
+	"songs by linkin park": {
+		"intent": "music",
+		"entities": [{
+			"value": "linkin park"
+		}]
+	},
+
+	"roll a die": {
+		"intent": "die",
+		"entities": [{
+			"value": "die"
+		}]
+	},
+
+	"test": {
+		"intent": "xkcd",
+		"entities": []
+	}
+}
