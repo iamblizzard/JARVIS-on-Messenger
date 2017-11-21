@@ -74,11 +74,18 @@ def webhook():
 
             if 'message' in event and 'attachment' in event['message']:
 
-                if 'type' in event['message']['attachment'] and event['message']['attachment']['type'] == 'video':
+                if 'type' in event['message']['attachment']:
 
-                    if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
-                        message = {}
-                        message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
+                    if event['message']['attachment']['type'] == 'video':
+
+                        if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
+                            message = {}
+                            message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
+
+
+                    elif event['message']['attachment']['type'] == 'audio':
+
+                        #for audio module
 
 
             if 'postback' in event and 'payload' in event['postback']:
