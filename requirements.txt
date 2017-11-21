@@ -13,6 +13,7 @@ IMDbPY==5.1.1
 ipaddress==1.0.16
 itsdangerous==0.24
 Jinja2==2.8
+keen==0.5.1
 lxml==3.8.0
 MarkupSafe==0.23
 ndg-httpsclient==0.4.0
