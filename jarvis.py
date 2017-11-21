@@ -3,7 +3,7 @@ import os
 import random
 import sys
 import pprint
-import dry_eye
+#import dry_eye
 from unidecode import unidecode
 
 import requests
@@ -22,13 +22,13 @@ app = Flask(__name__)
 def about():
 	return 'Just A Rather Very Intelligent System, now on Messenger!'
 
-
+'''
 @app.route('/camera/')
 def run():
 
 	data = dry_eye.main("/home/rock19/Desktop/new/VID_20170928_011356.mp4")
 	return data
-
+'''
 
 @app.route('/process/')
 def process():
@@ -80,7 +80,7 @@ def webhook():
 
 						if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
 							message = {}
-							message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
+							#message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
 
 
 					elif event['message']['attachment']['type'] == 'audio':
