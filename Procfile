@@ -1,1 +1,1 @@
-web: gunicorn jarvis:app
+web: python jarvis.py
