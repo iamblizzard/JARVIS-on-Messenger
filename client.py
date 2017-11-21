@@ -45,6 +45,8 @@ data = {
             "id":"296803227486360"
           },
           "message": {
+
+          		"text": 'yoyo'
     			"attachment":{
       						"type":"video",
       							"payload":{
