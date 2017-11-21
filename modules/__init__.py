@@ -2,7 +2,6 @@ import json
 import os
 import sys
 
-import keen
 import requests
 
 import config
@@ -62,12 +61,7 @@ def search(input, sender=None, postback=False):
             if entities is None:
                 entities = {}
             entities['sender'] = r.json()
-<<<<<<< HEAD
-
-=======
-        
-        
->>>>>>> 173d72e7795bfe7970cb489e351e8dc78371f960
+            
         data = sys.modules['modules.src.' + intent].process(input, entities)
 
         if data['success']:
