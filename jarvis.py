@@ -13,25 +13,6 @@ import config
 import modules
 import emoticons
 
-from scipy.spatial import distance as dist
-from imutils.video import VideoStream
-from imutils import face_utils
-from threading import Thread
-import numpy as np
-import playsound
-import argparse
-import imutils
-import time
-import dlib
-import cv2
-import imageio
-#import visvis as vv
-
-from gi.repository import Gdk
-#from SimpleCV import Camera
-import sys
-
-
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
