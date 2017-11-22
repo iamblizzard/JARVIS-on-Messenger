@@ -4,6 +4,7 @@ import random
 import sys
 import pprint
 import dry_eye
+import audioModule
 from unidecode import unidecode
 
 import requests
@@ -22,13 +23,16 @@ app = Flask(__name__)
 def about():
 	return 'Just A Rather Very Intelligent System, now on Messenger!'
 
-'''
-@app.route('/camera/')
-def run():
 
+@app.route('/video/')
+def video():
 	data = dry_eye.main("/home/rock19/Desktop/new/VID_20170928_011356.mp4")
 	return data
-'''
+
+@app.route('/audio/')
+def audio():
+	data = audioModule.main("amy.wav")
+	return data
 
 @app.route('/process/')
 def process():
@@ -71,22 +75,22 @@ def webhook():
 					else:
 						message = modules.search(text, sender=sender)
 			
-			
+			#modules
 			if 'message' in event and 'attachment' in event['message']:
 
 				if 'type' in event['message']['attachment']:
 
+					#video
 					if event['message']['attachment']['type'] == 'video':
 
 						if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
 							message = {}
-							print event['message']['attachment']['payload']['url']
 							message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
 
-
+					#audio
 					elif event['message']['attachment']['type'] == 'audio':
-						pass
-						#for audio module
+						message = {}
+						message['text'] = audioModule.main(event['message']['attachment']['payload']['url'])			
 			
 
 			if 'postback' in event and 'payload' in event['postback']:
