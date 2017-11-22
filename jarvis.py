@@ -26,14 +26,12 @@ def about():
 
 @app.route('/video/')
 def video():
-	data = dry_eye.main("/home/rock19/Desktop/new/VID_20170928_011356.mp4")
-	return data
-
+	return dry_eye.main("/home/rock19/Desktop/new/VID_20170928_011356.mp4")
+	
 @app.route('/audio/')
 def audio():
-	data = audioModule.main("amy.wav")
-	return data
-
+	return audioModule.main("amy.wav")
+	
 @app.route('/process/')
 def process():
 	return json.dumps(modules.process_query(request.args.get('q')))
@@ -60,6 +58,7 @@ def webhook():
 				if 'quick_reply' in event['message'] and 'payload' in event['message']['quick_reply']:
 					quick_reply_payload = event['message']['quick_reply']['payload']
 					message = modules.search(quick_reply_payload, sender=sender, postback=True)
+				
 				else:
 					text = event['message']['text']
 
