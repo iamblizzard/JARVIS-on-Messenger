@@ -80,7 +80,7 @@ def webhook():
 
 						if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
 							message = {}
-							#message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
+							message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
 
 
 					elif event['message']['attachment']['type'] == 'audio':
