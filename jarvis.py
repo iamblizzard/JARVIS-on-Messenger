@@ -3,7 +3,7 @@ import os
 import random
 import sys
 import pprint
-#import dry_eye
+import dry_eye
 from unidecode import unidecode
 
 import requests
@@ -80,6 +80,7 @@ def webhook():
 
 						if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
 							message = {}
+							print event['message']['attachment']['payload']['url']
 							message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
 
 
