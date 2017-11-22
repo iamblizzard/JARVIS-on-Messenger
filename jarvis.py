@@ -71,7 +71,7 @@ def webhook():
 					else:
 						message = modules.search(text, sender=sender)
 			
-			'''
+			
 			if 'message' in event and 'attachment' in event['message']:
 
 				if 'type' in event['message']['attachment']:
@@ -86,7 +86,7 @@ def webhook():
 					elif event['message']['attachment']['type'] == 'audio':
 						pass
 						#for audio module
-			'''
+			
 
 			if 'postback' in event and 'payload' in event['postback']:
 				postback_payload = event['postback']['payload']
