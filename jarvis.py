@@ -5,6 +5,7 @@ import sys
 import pprint
 import dry_eye
 import audioModule
+import councillor
 from unidecode import unidecode
 
 import requests
@@ -68,8 +69,11 @@ def webhook():
 						data = emoticons.process(x[2:])
 
 						if data['success']:
-							message = {}
-							message['text'] = json.dumps(data['output'])[10:-2]
+							message = json.dumps(data['output'])[10:-2]
+
+							if(x in ['\U0001f620', '\U0002f639', '\U0001f61f', '\U0001f61e']):
+								message += '\nYou seem sad, Do you want to take our anonymous depression detection test?'
+
 
 					else:
 						message = modules.search(text, sender=sender)
@@ -83,21 +87,15 @@ def webhook():
 					if event['message']['attachment']['type'] == 'video':
 
 						if 'payload' in event['message']['attachment'] and 'url' in event['message']['attachment']['payload']:
-							message = {}
-							message['text'] = dry_eye.main(event['message']['attachment']['payload']['url'])
+							message = dry_eye.main(event['message']['attachment']['payload']['url'])
 
 					#audio
 					elif event['message']['attachment']['type'] == 'audio':
-						message = {}
-						message['text'] = audioModule.main(event['message']['attachment']['payload']['url'])			
+						message = audioModule.main(event['message']['attachment']['payload']['url'])			
 			
 
 			if 'postback' in event and 'payload' in event['postback']:
 				postback_payload = event['postback']['payload']
-
-				if event['postback']['type'] == 'video':
-					modules.camera(postback_payload, sender=sender, postback=True)
-
 				message = modules.search(postback_payload, sender=sender, postback=True)
 			
 			if message is not None:
@@ -107,10 +105,9 @@ def webhook():
 					},
 					'message': message
 				}
-				return message['text']
 
-				#r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN},
-				 #                 json=payload)
+				r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN},
+				                  json=payload)
 				
 		return ''  # 200 OK
 
@@ -122,6 +119,4 @@ def webhook():
 
 
 if __name__ == '__main__':
-	#app.run()
-
 	app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)

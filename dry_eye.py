@@ -64,7 +64,7 @@ def main(path):
 	reader = imageio.get_reader(path)
 	#t = vv.imshow(reader.get_next_data(), clim=(0, 255))
 
-	time.sleep(1.0)  # If you don't wait, the image will be dark
+	#time.sleep(1.0)  # If you don't wait, the image will be dark
 
 	i=1
 	for frame in reader:
@@ -98,8 +98,8 @@ def main(path):
 			
 			leftEyeHull = cv2.convexHull(leftEye)
 			rightEyeHull = cv2.convexHull(rightEye)
-			cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
-			cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
+			#cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
+			#cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
 			
 
 			# check to see if the eye aspect ratio is below the blink
@@ -118,15 +118,15 @@ def main(path):
 			# draw the computed eye aspect ratio on the frame to help
 			# with debugging and setting the correct eye aspect ratio
 			# thresholds and frame counters
-			cv2.putText(frame, "EAR: {:.2f}".format(ear), (10, 30),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+			#cv2.putText(frame, "EAR: {:.2f}".format(ear), (10, 30),
+			#	cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
 		# show the frame
 		#cv2.imshow("Frame", frame)
 		#key = cv2.waitKey(1) & 0xFF
 		i += 1
 
-	cv2.destroyAllWindows()
+	#cv2.destroyAllWindows()
 	if val == 0:
 		val = i
 	
