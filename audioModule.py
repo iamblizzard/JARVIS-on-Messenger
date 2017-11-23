@@ -1,13 +1,20 @@
 from pyAudioAnalysis import audioTrainTest as aT
 import pickle
-
+import os
+from pydub import AudioSegment
 def main(file):
 
-	index, prob, emo = aT.fileClassification(file, "svmSMtemp","svm")
+
+	sound = AudioSegment.from_mp3(file)
+	sound.export("output.wav", format="wav")
+
+	index, prob, emo = aT.fileClassification("output.wav", "svmSMtemp","svm")
 	print index, prob, emo
 	weight = [1, -0.25, 2, -2, -0.5, -2, -0.5, 1]
 	for i, j in enumerate(prob):
 	    prob[i] *= weight[i]
+
+	os.remove('output.wav')
 
 	score =  sum(prob)
 	if score > 0:
