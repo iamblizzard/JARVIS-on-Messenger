@@ -45,3 +45,4 @@ argparse==1.1
 imageio==2.2.0
 unidecode==0.04.21
 gunicorn==19.7.1
+pyAudioAnalysis==0.1.3

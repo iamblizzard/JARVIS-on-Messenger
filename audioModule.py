@@ -9,7 +9,7 @@ def main(file):
 	sound.export("output.wav", format="wav")
 
 	index, prob, emo = aT.fileClassification("output.wav", "svmSMtemp","svm")
-	print index, prob, emo
+	#print index, prob, emo
 	weight = [1, -0.25, 2, -2, -0.5, -2, -0.5, 1]
 	for i, j in enumerate(prob):
 	    prob[i] *= weight[i]
